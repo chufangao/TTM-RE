@@ -13,7 +13,7 @@ python train2.py --data_dir ./dataset/docred \
     --max_grad_norm 1.0 \
     --warmup_ratio 0.06 \
     --num_train_epochs 30.0 \
-    --seed 75 \
+    --seed 74 \
     --num_class 97 \
     --isrank 1 \
     --m_tag S-PU \
