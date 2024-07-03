@@ -1,5 +1,5 @@
 # TTM-RE
-ACL2024: TTM-RE Memory-Augmented Document-Level Relation Extraction
+ACL2024: [TTM-RE Memory-Augmented Document-Level Relation Extraction](https://arxiv.org/abs/2406.05906)
 
 Please see the scripts folder for example run files. 
 Specifically, see run_roberta_rank.sh for the best results.
