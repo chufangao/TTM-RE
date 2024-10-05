@@ -7,12 +7,22 @@ Weights are released for roberta-large in the GitHub releases: https://github.co
 
 Please cite: 
 ```
-@article{gao2024ttm,
-  title={TTM-RE: Memory-Augmented Document-Level Relation Extraction},
-  author={Gao, Chufan and Wang, Xuan and Sun, Jimeng},
-  journal={arXiv preprint arXiv:2406.05906},
-  year={2024}
-}
+@inproceedings{gao-etal-2024-ttm,
+    title = "{TTM}-{RE}: Memory-Augmented Document-Level Relation Extraction",
+    author = "Gao, Chufan  and
+      Wang, Xuan  and
+      Sun, Jimeng",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.26",
+    doi = "10.18653/v1/2024.acl-long.26",
+    pages = "443--458",
 ```
 
 Much thanks to https://github.com/www-Ye/SSR-PU and https://github.com/wzhouad/ATLOP for making their code open source.
