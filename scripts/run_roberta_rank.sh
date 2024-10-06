@@ -20,7 +20,7 @@ python train2.py --data_dir ./dataset/docred \
     --model_type ttmre \
     --m 1.0 \
     --e 1.0 \
-    --pretrain_distant 2\
+    --pretrain_distant 4\
     --num_layers 4
 
 

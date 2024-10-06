@@ -256,53 +256,8 @@ class DocREModel(nn.Module):
             loss_weights_list = [1.]
             m_tags_list = [self.args.m_tag]
 
-        if self.args.model_type == 'mse_dist2':
-            topk = 3
 
-            hs_ = torch.tanh(self.head_extractor(torch.cat([hs, rs], dim=1)))    # zs
-            ts_ = torch.tanh(self.tail_extractor(torch.cat([ts, rs], dim=1)))    # zo
-            b1 = hs_.view(-1, self.emb_size // self.block_size, self.block_size)
-            b2 = ts_.view(-1, self.emb_size // self.block_size, self.block_size)
-            bl1 = (b1.unsqueeze(3) * b2.unsqueeze(2)).view(-1, self.emb_size * self.block_size)
-            bl1 = self.dropout(bl1)
-            logits1 = self.bilinear(bl1)
-
-            # # retrieval of pseudo documents
-            hs_weights = torch.matmul(hs, self.label_mu_extractor3.transpose(0, 1))
-            ts_weights = torch.matmul(ts, self.label_mu_extractor3.transpose(0, 1))
-
-            hs_topk_inds = torch.topk(hs_weights, k=topk, dim=-1).indices
-            hs2 = self.mu_encoder(torch.cat([hs.unsqueeze(1), self.label_mu_extractor3[hs_topk_inds]], dim=1))
-            hs2 = hs2[:,0,:]
-
-            ts_topk_inds = torch.topk(ts_weights, k=topk, dim=-1).indices
-            ts2 = self.mu_encoder(torch.cat([ts.unsqueeze(1), self.label_mu_extractor3[ts_topk_inds]], dim=1))
-            ts2 = ts2[:,0,:]
-
-            hs2_ = torch.tanh(self.head_extractor(torch.cat([hs2, rs], dim=1)))    # zs
-            ts2_ = torch.tanh(self.tail_extractor(torch.cat([ts2, rs], dim=1)))    # zo
-            b1 = hs2_.view(-1, self.emb_size // self.block_size, self.block_size)
-            b2 = ts2_.view(-1, self.emb_size // self.block_size, self.block_size)
-            bl2 = (b1.unsqueeze(3) * b2.unsqueeze(2)).view(-1, self.emb_size * self.block_size)
-            bl2 = self.dropout(bl2)
-            logits2 = self.bilinear(bl2)
-
-            max_confidence = nn.Sigmoid()(torch.max(logits1[:,1:] - logits1[:,0:1], dim=1).values)
-            max_confidence = max_confidence.unsqueeze(1)
-            logits_list = [logits1*max_confidence + logits2*(1-max_confidence), logits1]
-            loss_weights_list = [1, 1]
-            m_tags_list = [self.args.m_tag, self.args.m_tag]
-
-        if self.args.model_type == 'simple':
-            logits = self.simple_bilinear(torch.stack([hs, ts, rs], dim=1))
-            logits = self.simple_bilinear2(logits.mean(dim=1))
-            # print(logits.shape)
-
-            logits_list = [logits]
-            loss_weights_list = [1.]
-            m_tags_list = [self.args.m_tag,]
-
-        if self.args.model_type == 'mse_dist3':
+        if self.args.model_type == 'ttmre':
             hs = torch.tanh(self.head_extractor(torch.cat([hs, rs], dim=1)))    # zs
             ts = torch.tanh(self.head_extractor(torch.cat([ts, rs], dim=1)))    # zo
 

@@ -73,29 +73,6 @@ def train(args, model, train_features, dev_features, save_best_val=True, lr=1e-4
     print("Warmup steps: {}".format(warmup_steps))
     for epoch in tqdm(train_iterator):
         model.zero_grad()
-        # switch = 0
-        # if args.model_type not in ["ATLOP", "simple", ]:
-        #     if epoch%2 == 1:
-        #         switch = 1 - switch
-        #     if switch == 0:
-        #         # model.train_mode = 'finetune1'
-        #         for n, p in model.named_parameters():
-        #             if 'mu' in n or 'var' in n: # freeze embeds
-        #                 p.requires_grad = False
-        #             else:
-        #                 p.requires_grad = True
-        #             # if 'recall_extractor' in n:
-        #             #     p.requires_grad = True
-        #     else:
-        #         # model.train_mode = 'finetune2'
-        #         for n, p in model.named_parameters(): # only update embeds
-        #             if 'mu' in n or 'var' in n:
-        #                 p.requires_grad = True
-        #             else:
-        #                 p.requires_grad = False
-        #             # if 'recall_extractor' in n:
-        #             #     p.requires_grad = True
-        #     print("switch", switch, model.train_mode)
 
         for step, batch in enumerate(tqdm(train_dataloader)):
             model.train()
