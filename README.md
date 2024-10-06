@@ -1,7 +1,7 @@
 # TTM-RE
 ACL2024: [TTM-RE Memory-Augmented Document-Level Relation Extraction](https://aclanthology.org/2024.acl-long.26/)
 
-![image](https://github.com/user-attachments/assets/e6f4dc1a-468e-492f-93e6-dc92b4e3fbfb)
+![image](https://github.com/user-attachments/assets/68cbbfb7-d0ed-478e-8f63-5e2240dca5da)
 
 Please see the scripts folder for example run files. 
 Specifically, see run_roberta_rank.sh for the best results.
